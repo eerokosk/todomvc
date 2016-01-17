@@ -1,1 +1,1 @@
-# todomvc
+# Backbone.js + React TodoMVC Example
