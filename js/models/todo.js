@@ -5,6 +5,10 @@ var app = app || {};
 
   app.Todo = Backbone.Model.extend({
 
+    idAttribute: '_id',
+
+    urlRoot: '/api/todos',
+
     // default attributes for todo object
     defaults: {
       title: '',

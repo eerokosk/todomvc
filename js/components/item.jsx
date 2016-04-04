@@ -68,9 +68,12 @@ var app = app || {};
         this.setState({editing: false});
       }
 
-      // submit todo on enter key
+      // on enter key
       else if (e.which === app.ENTER_KEY) {
-        this.handleSubmit(e);
+        // find edit field
+        var node = React.findDOMNode(this.refs.editField);
+        // blur edit field
+        node.blur();
       }
     },
 

@@ -5,11 +5,10 @@ var app = app || {};
 
   app.Todos = Backbone.Collection.extend({
 
+    url: '/api/todos',
+
     // collection consists of todo models
     model: app.Todo,
-
-    // use local storage as a data source for this collection
-    localStorage: new Backbone.LocalStorage('todos-backbone'),
 
     // filter completed todo items
     completed: function () {

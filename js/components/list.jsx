@@ -46,7 +46,7 @@ var app = app || {};
         // list filtered todos
         .map(function(model, index) {
           // transfer todo model to component as a property
-          return <AppItem key={model.get('id')} model={model} />
+          return <AppItem key={model.get('_id')} model={model} />
         });
 
       return (
