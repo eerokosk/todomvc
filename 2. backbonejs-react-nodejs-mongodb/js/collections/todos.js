@@ -6,6 +6,7 @@ var app = app || {};
   app.Todos = Backbone.Collection.extend({
 
     url: '/api/todos',
+    // url: 'js/collections/todos.json',
 
     // collection consists of todo models
     model: app.Todo,

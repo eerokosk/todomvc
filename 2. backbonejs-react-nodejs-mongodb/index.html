@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" data-framework="backbonejs">
+  <head>
+    <meta charset="utf-8">
+    <title>Node.js + Express + Backbone.js + React • TodoMVC</title>
+    <link rel="stylesheet" href="node_modules/todomvc-common/base.css">
+    <link rel="stylesheet" href="node_modules/todomvc-app-css/index.css">
+  </head>
+  <body>
+    <!-- by preference only one placeholder should exist in index.html -->
+    <div id="app"></div>
+    <script src="node_modules/todomvc-common/base.js"></script>
+    <script src="node_modules/react/dist/react.js"></script>
+    <!--  note that in browser JSX transformer has been deprecated -->
+    <script src="node_modules/react/dist/JSXTransformer.js"></script>
+    <script src="node_modules/classnames/index.js"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/underscore/underscore.js"></script>
+    <script src="node_modules/backbone/backbone.js"></script>
+    <script src="node_modules/backbone.localstorage/backbone.localStorage.js"></script>
+    <!-- Backbone model -->
+    <script src="js/models/todo.js"></script>
+    <script src="js/collections/todos.js"></script>
+    <!-- React components -->
+    <script type="text/jsx" src="js/components/item.jsx"></script>
+    <script type="text/jsx" src="js/components/list.jsx"></script>
+    <script type="text/jsx" src="js/components/new.jsx"></script>
+    <script type="text/jsx" src="js/components/stats.jsx"></script>
+    <script type="text/jsx" src="js/components/app.jsx"></script>
+    <!-- start -->
+    <script src="js/routers/router.js"></script>
+  </body>
+</html>
