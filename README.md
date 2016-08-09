@@ -25,3 +25,20 @@ Usage
     mongod --dbpath /usr/local/var/mongodb/
     node server.js
     http://localhost:8080/
+
+## 3. react-redux-axios-nodejs-mongodb
+
+TodoMVC example with React, Redux, Axios, Node.js and MongoDB.
+
+Usage
+
+    mongod --dbpath /usr/local/var/mongodb/
+    cd path/to/backend/example
+    npm install
+    node server.js
+
+    cd path/to/frontend/example
+    npm install
+    gulp
+
+    http://localhost:8080/
