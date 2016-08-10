@@ -2,12 +2,11 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
 // App Reducers
-import userReducer from './reducers/user';
+import todoReducer from './reducers/todo';
 
 // Combine Reducers
 var reducers = combineReducers({
-    userReducer: userReducer
-    // more if you want...
+    todoReducer: todoReducer
 });
 
 // Create Store
