@@ -16,10 +16,10 @@ const ListContainer = React.createClass({
   }
 });
 
-const stateToProps = function(state) {
+const mapStateToProps = function(state, ownProps) {
   return {
     todos: state.todoReducer.todos
   };
 };
 
-export default connect(stateToProps)(ListContainer);
+export default connect(mapStateToProps)(ListContainer);

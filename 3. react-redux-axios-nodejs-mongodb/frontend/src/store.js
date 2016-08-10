@@ -3,16 +3,18 @@ import thunk from 'redux-thunk';
 
 // App Reducers
 import todoReducer from './reducers/todo';
+import filterReducer from './reducers/filter';
 
 // Combine Reducers
 var reducers = combineReducers({
-    todoReducer: todoReducer
+  filterReducer: filterReducer,
+  todoReducer: todoReducer
 });
 
 // Create Store
 var store = createStore(
-    reducers,
-    applyMiddleware(thunk)
+  reducers,
+  applyMiddleware(thunk)
 );
 
 export default store;

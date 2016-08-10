@@ -1,18 +1,22 @@
 import React from 'react';
 import store from './../store';
 import { connect } from 'react-redux';
+import { toggleTodo, deleteTodo } from 'src/api/todo';
 import ItemComponent from 'src/components/item.jsx';
 
-const stateToProps = function(state) {
+const mapStateToProps = function(state, ownProps) {
   return {};
 };
 
-const dispatchToProps = function(dispatch) {
+const mapDispatchToProps = function(dispatch, ownProps) {
   return {
-    handleDestroy: () => {
-      console.log('handleDestroy');
+    handleToggle: (e) => {
+      toggleTodo(ownProps.todo);
+    },
+    handleDestroy: (e) => {
+      deleteTodo(ownProps.todo);
     }
   };
 };
 
-export default connect(stateToProps, dispatchToProps)(ItemComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemComponent);

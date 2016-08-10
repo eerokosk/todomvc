@@ -8,7 +8,10 @@ export default React.createClass({
         <input
           className="new-todo"
           placeholder="What needs to be done?"
-          autoFocus={true} />
+          autoFocus={true}
+          value={this.props.newTodo}
+          onKeyDown={this.props.handleNew}
+          onChange={this.props.handleChange} />
       </header>
     )
   }
