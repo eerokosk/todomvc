@@ -1,7 +1,6 @@
 import React from 'react';
 import store from 'src/store';
 import { connect } from 'react-redux';
-// import { getTodos } from 'src/api/todo';
 import { addTodo } from 'src/api/todo';
 import NewComponent from 'src/components/new.jsx';
 
