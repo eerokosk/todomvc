@@ -18,6 +18,7 @@ const ListContainer = React.createClass({
 
 const mapStateToProps = function(state, ownProps) {
   return {
+    filter: state.filterReducer.filter,
     todos: state.todoReducer.todos
   };
 };

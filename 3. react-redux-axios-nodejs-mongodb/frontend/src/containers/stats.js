@@ -17,10 +17,6 @@ const mapDispatchToProps = function(dispatch, ownProps) {
       store.dispatch({
         type: 'SET_FILTER'
       });
-
-      store.dispatch({
-        type: 'FILTER_TODOS'
-      });
     }
   };
 };

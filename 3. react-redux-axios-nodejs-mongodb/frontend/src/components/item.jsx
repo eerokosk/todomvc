@@ -1,9 +1,13 @@
 import React from 'react';
+import classNames from 'classnames';
 
 export default React.createClass({
   render: function() {
     return (
-      <li className={this.props.todo.completed ? 'completed' : ''}>
+      <li className={classNames({
+        'completed': this.props.todo.completed,
+        'hidden': (this.props.filter !== null && this.props.todo.completed !== this.props.filter)
+      })}>
         <div className="view">
           <input
             className="toggle"

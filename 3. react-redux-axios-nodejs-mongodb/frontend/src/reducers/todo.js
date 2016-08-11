@@ -9,11 +9,6 @@ var todoInitialState = {
 export default function(state = todoInitialState, action) {
   switch(action.type) {
 
-    case 'FILTER_TODOS':
-      var newState = Object.assign({}, state);
-      newState.todos = _.where(newState.todos, {completed: store.getState().filterReducer.filter});
-      return newState;
-
     case 'GET_TODOS':
       return Object.assign({}, state, {
         todos: action.todos
