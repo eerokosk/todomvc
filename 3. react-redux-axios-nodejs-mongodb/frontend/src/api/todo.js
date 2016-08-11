@@ -19,7 +19,7 @@ export function getTodos() {
 export function addTodo(newTodo) {
   return axios.post('http://localhost:8000/api/todos', {
     title: newTodo,
-    order: 0
+    order: store.getState().todoReducer.todos.length + 1
   }).then(function(response) {
 
     store.dispatch({
