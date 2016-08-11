@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import config from '../config';
 import classNames from 'classnames';
 
 export default React.createClass({
@@ -32,7 +33,7 @@ export default React.createClass({
 
   handleKeyDown: function (e) {
     // cancel todo on escape key
-    if (e.which === 27) {
+    if (e.keyCode === config.ESCAPE_KEY) {
       this.setState({
         editedTodo: this.props.todo.title,
         editing: false
@@ -40,7 +41,7 @@ export default React.createClass({
     }
 
     // on enter key
-    else if (e.which === 13) {
+    else if (e.keyCode === config.ENTER_KEY) {
       this.setState({
         editing: false
       });

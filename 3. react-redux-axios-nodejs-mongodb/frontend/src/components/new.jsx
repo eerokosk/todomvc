@@ -1,4 +1,5 @@
 import React from 'react';
+import config from '../config';
 
 export default React.createClass({
   getInitialState: function () {
@@ -13,7 +14,7 @@ export default React.createClass({
 
   handleKeyDown: function (e) {
     // don't handle if not enter key pressed
-    if (e.keyCode !== 13) {
+    if (e.keyCode !== config.ENTER_KEY) {
       return;
     }
 
