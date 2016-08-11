@@ -2,8 +2,7 @@ import _ from 'underscore';
 import store from '../store';
 
 var todoInitialState = {
-  todos: [],
-  newTodo: ''
+  todos: []
 };
 
 export default function(state = todoInitialState, action) {
@@ -23,18 +22,11 @@ export default function(state = todoInitialState, action) {
         newTodo: ''
       });
 
-    case 'SUBMIT_TODO':
-      return Object.assign({}, state, {
-        newTodo: action.newTodo
-      });
-
-    case 'TOGGLE_TODO':
+    case 'UPDATE_TODO':
       return Object.assign({}, state, {
         todos: state.todos.map((todo, index) => {
           if (todo._id === action.todo._id) {
-            return Object.assign({}, todo, {
-              completed: !todo.completed
-            });
+            return Object.assign({}, action.todo);
           }
           return todo;
         })

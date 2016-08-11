@@ -34,16 +34,12 @@ export function addTodo(newTodo) {
   });
 }
 
-export function toggleTodo(todo) {
-  return axios.put('http://localhost:8000/api/todos/' + todo._id,
-    Object.assign({}, todo, {
-      completed: !todo.completed
-    })
-  ).then(function(response) {
+export function updateTodo(todo) {
+  return axios.put('http://localhost:8000/api/todos/' + todo._id, todo).then(function(response) {
 
     store.dispatch({
-      type: 'TOGGLE_TODO',
-      todo: todo
+      type: 'UPDATE_TODO',
+      todo: response.data
     });
 
     return response;
