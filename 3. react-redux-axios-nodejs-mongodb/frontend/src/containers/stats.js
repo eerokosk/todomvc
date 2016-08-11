@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'underscore';
 import store from './../store';
 import { connect } from 'react-redux';
+import { deleteTodo } from 'src/api/todo';
 import StatsComponent from 'src/components/stats.jsx';
 
 const mapStateToProps = function(state, ownProps) {
@@ -16,6 +17,13 @@ const mapDispatchToProps = function(dispatch, ownProps) {
     handleFilter: (e) => {
       store.dispatch({
         type: 'SET_FILTER'
+      });
+    },
+    handleCompleted: (e) => {
+      store.getState().todoReducer.todos.map((todo, key) => {
+        if (todo.completed) {
+          deleteTodo(todo);
+        }
       });
     }
   };
