@@ -12,7 +12,7 @@ import StatsComponent from 'src/components/stats.js';
 
 class App extends Component {
   render() {
-    const { routing, filter, todos, todoActions } = this.props
+    const { routing, todos, todoActions } = this.props
     return (
       <section className="todoapp">
         <NewComponent
@@ -20,12 +20,10 @@ class App extends Component {
           todoActions={todoActions} />
         <ListComponent
           routing={routing}
-          filter={filter}
           todos={todos}
           todoActions={todoActions} />
         <StatsComponent
           routing={routing}
-          filter={filter}
           todos={todos}
           todoActions={todoActions} />
       </section>
@@ -41,7 +39,6 @@ function mapStateToProps(state, ownProps) {
       pathparts: ownProps.location.pathname.split('/').filter(function(n){ return n != '' }),
       query: ownProps.location.query
     },
-    filter: state.filter,
     todos: state.todos
   }
 }
