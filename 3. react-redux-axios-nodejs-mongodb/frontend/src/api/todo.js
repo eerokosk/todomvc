@@ -3,32 +3,17 @@ import store from 'src/store';
 
 export function getTodos() {
   return axios.get('http://localhost:8000/api/todos').then(function(response) {
-
-    store.dispatch({
-      type: 'GET_TODOS',
-      todos: response.data
-    });
-
-    return response;
-
+    return response.data;
   }).catch(function(err) {
     console.error(err);
   });
 }
 
-export function addTodo(newTodo) {
+export function addTodo(text) {
   return axios.post('http://localhost:8000/api/todos', {
-    title: newTodo,
-    order: store.getState().todoReducer.todos.length + 1
+    text: text
   }).then(function(response) {
-
-    store.dispatch({
-      type: 'ADD_TODO',
-      todo: response.data
-    });
-
-    return response;
-
+    return response.data;
   }).catch(function(err) {
     console.error(err);
   });
@@ -36,14 +21,7 @@ export function addTodo(newTodo) {
 
 export function updateTodo(todo) {
   return axios.put('http://localhost:8000/api/todos/' + todo._id, todo).then(function(response) {
-
-    store.dispatch({
-      type: 'UPDATE_TODO',
-      todo: response.data
-    });
-
-    return response;
-
+    return response.data;
   }).catch(function(err) {
     console.error(err);
   });
@@ -51,14 +29,7 @@ export function updateTodo(todo) {
 
 export function deleteTodo(todo) {
   return axios.delete('http://localhost:8000/api/todos/' + todo._id).then(function(response) {
-
-    store.dispatch({
-      type: 'DELETE_TODO',
-      todo: todo
-    });
-
-    return response;
-
+    return todo;
   }).catch(function(err) {
     console.error(err);
   });

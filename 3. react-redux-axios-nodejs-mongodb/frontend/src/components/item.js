@@ -24,7 +24,8 @@ export default React.createClass({
   },
 
   handleToggle: function(e) {
-    this.props.todoActions.completeTodo(this.props.todo.id);
+    this.props.todo.completed = !this.props.todo.completed;
+    this.props.todoActions.updateTodo(this.props.todo);
   },
 
   handleEdit: function(e) {
@@ -32,7 +33,7 @@ export default React.createClass({
   },
 
   handleDestroy: function(e) {
-    this.props.todoActions.deleteTodo(this.props.todo.id);
+    this.props.todoActions.deleteTodo(this.props.todo);
   },
 
   handleChange: function (e) {
@@ -64,12 +65,12 @@ export default React.createClass({
     // update if not empty
     if (e.target.value) {
       this.props.todo.text = e.target.value;
-      this.props.todoActions.editTodo(this.props.todo.id, this.props.todo.text);
+      this.props.todoActions.updateTodo(this.props.todo);
     }
 
     // delete if empty
     else {
-      this.props.todoActions.deleteTodo(this.props.todo.id);
+      this.props.todoActions.deleteTodo(this.props.todo);
     }
   },
 

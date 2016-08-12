@@ -2,6 +2,10 @@ import React from 'react';
 import ItemComponent from 'src/components/item.js';
 
 export default React.createClass({
+  componentDidMount: function() {
+    this.props.todoActions.getTodos();
+  },
+
   render: function() {
     var self = this;
     return (
@@ -11,7 +15,7 @@ export default React.createClass({
         <ul className="todo-list">
           {this.props.todos.map((todo, key) => {
             return (
-              <ItemComponent key={todo.id} todo={todo} {...self.props} />
+              <ItemComponent key={todo._id} todo={todo} {...self.props} />
             );
           })}
         </ul>

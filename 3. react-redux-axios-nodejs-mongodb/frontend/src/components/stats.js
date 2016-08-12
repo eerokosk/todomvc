@@ -6,7 +6,7 @@ export default React.createClass({
   handleCompleted: function(e) {
     this.props.todos.map((todo, key) => {
       if (todo.completed) {
-        this.props.todoActions.deleteTodo(todo.id);
+        this.props.todoActions.deleteTodo(todo);
       }
     });
   },

@@ -15,8 +15,7 @@ var TodoSchema = new Schema({
   created: { type: Date, default: Date.now },
   updated: { type: Date, default: Date.now },
   completed: { type: Boolean, default: false },
-  order: { type: Number },
-  title: { type: String, required: true,
+  text: { type: String, required: true,
     validate: {
       validator: function(value) {
         return validator.isLength(validator.trim(value), 1, 100);

@@ -1,29 +1,54 @@
 import * as types from '../constants/TodoTypes'
+import * as Api from '../api/todo'
 
-export function getTodos(text) {
-  return { type: types.GET_TODOS }
+export function getTodosSync(todos) {
+  return { type: types.GET_TODOS, todos }
+}
+
+export function addTodoSync(todo) {
+  return { type: types.ADD_TODO, todo }
+}
+
+export function deleteTodoSync(todo) {
+  return { type: types.DELETE_TODO, todo }
+}
+
+export function updateTodoSync(todo) {
+  return { type: types.UPDATE_TODO, todo }
+}
+
+export function getTodos() {
+  return function (dispatch) {
+    return Api.getTodos().then(
+      todos => dispatch(getTodosSync(todos)),
+      error => console.log(error)
+    );
+  }
 }
 
 export function addTodo(text) {
-  return { type: types.ADD_TODO, text }
+  return function (dispatch) {
+    return Api.addTodo(text).then(
+      todo => dispatch(addTodoSync(todo)),
+      error => console.log(error)
+    );
+  };
 }
 
-export function deleteTodo(id) {
-  return { type: types.DELETE_TODO, id }
+export function deleteTodo(todo) {
+  return function (dispatch) {
+    return Api.deleteTodo(todo).then(
+      todo => dispatch(deleteTodoSync(todo)),
+      error => console.log(error)
+    );
+  };
 }
 
-export function editTodo(id, text) {
-  return { type: types.EDIT_TODO, id, text }
-}
-
-export function completeTodo(id) {
-  return { type: types.COMPLETE_TODO, id }
-}
-
-export function completeAll() {
-  return { type: types.COMPLETE_ALL }
-}
-
-export function clearCompleted() {
-  return { type: types.CLEAR_COMPLETED }
+export function updateTodo(todo) {
+  return function (dispatch) {
+    return Api.updateTodo(todo).then(
+      todo => dispatch(updateTodoSync(todo)),
+      error => console.log(error)
+    );
+  };
 }

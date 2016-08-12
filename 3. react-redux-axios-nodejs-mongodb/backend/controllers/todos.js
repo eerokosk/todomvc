@@ -16,8 +16,7 @@ exports.postTodos = function postTodos(req, res) {
   // create todo
   var todo = new Todo({
     _id: mongoose.Types.ObjectId(),
-    title: req.body.title,
-    order: req.body.order
+    text: req.body.text
   });
 
   // save todo
@@ -40,7 +39,6 @@ exports.getTodos = function getTodos(req, res) {
   // find todos
   Todo
   .find()
-  .sort({order: 1})
   .exec(function(err, todos) {
     if (err) {
       console.log(err);
@@ -93,7 +91,7 @@ exports.putTodo = function putTodo(req, res) {
     // update todo
     todo.updated = new Date();
     todo.completed = req.body.completed;
-    todo.title = req.body.title;
+    todo.text = req.body.text;
 
     // save todo
     todo.save(function(err, todo) {
