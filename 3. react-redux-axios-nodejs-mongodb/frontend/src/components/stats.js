@@ -3,10 +3,6 @@ import classNames from 'classnames';
 import { Link } from 'react-router';
 
 export default React.createClass({
-  handleFilter: function (e) {
-    this.props.filterActions.setFilter();
-  },
-
   handleCompleted: function(e) {
     this.props.todos.map((todo, key) => {
       if (todo.completed) {
@@ -23,14 +19,14 @@ export default React.createClass({
             !todo.completed ? count + 1 : count, 0)}</strong> items left
         </span>
         <ul className="filters">
-          <li onClick={this.handleFilter}>
-            <Link to="/" className={classNames({'selected': this.props.filter.selected === null})}>All</Link>
+          <li>
+            <Link to="/" className={classNames({'selected': (!this.props.routing.pathparts[0]) })}>All</Link>
           </li>
-          <li onClick={this.handleFilter}>
-            <Link to="/active" className={classNames({'selected': this.props.filter.selected === false})}>Active</Link>
+          <li>
+            <Link to="/active" className={classNames({'selected': (this.props.routing.pathparts[0] === 'active')})}>Active</Link>
           </li>
-          <li onClick={this.handleFilter}>
-            <Link to="/completed" className={classNames({'selected': this.props.filter.selected === true})}>Completed</Link>
+          <li>
+            <Link to="/completed" className={classNames({'selected': (this.props.routing.pathparts[0] === 'completed')})}>Completed</Link>
           </li>
         </ul>
         <button onClick={this.handleCompleted} className="clear-completed">Clear completed</button>

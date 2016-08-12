@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 // actions
-import * as FilterActions from '../actions/FilterActions'
 import * as TodoActions from '../actions/TodoActions'
 
 // components
@@ -13,35 +12,42 @@ import StatsComponent from 'src/components/stats.js';
 
 class App extends Component {
   render() {
-    const { filter, todos, filterActions, todoActions } = this.props
+    const { routing, filter, todos, todoActions } = this.props
     return (
       <section className="todoapp">
         <NewComponent
+          routing={routing}
           todoActions={todoActions} />
         <ListComponent
+          routing={routing}
           filter={filter}
           todos={todos}
           todoActions={todoActions} />
         <StatsComponent
+          routing={routing}
           filter={filter}
           todos={todos}
-          filterActions={filterActions}
           todoActions={todoActions} />
       </section>
     )
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
+    // selective routing state
+    routing: {
+      pathname: ownProps.location.pathname,
+      pathparts: ownProps.location.pathname.split('/').filter(function(n){ return n != '' }),
+      query: ownProps.location.query
+    },
     filter: state.filter,
     todos: state.todos
   }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, ownProps) {
   return {
-    filterActions: bindActionCreators(FilterActions, dispatch),
     todoActions: bindActionCreators(TodoActions, dispatch)
   }
 }

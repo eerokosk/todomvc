@@ -2,13 +2,13 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
 // App Reducers
-import todos from './reducers/todos';
-import filter from './reducers/filter';
+import { routerReducer } from 'react-router-redux';
+import todosReducer from './reducers/todos';
 
 // Combine Reducers
 var reducers = combineReducers({
-  filter: filter,
-  todos: todos
+  routing: routerReducer,
+  todos: todosReducer
 });
 
 // Create Store
