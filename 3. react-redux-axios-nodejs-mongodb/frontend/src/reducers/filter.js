@@ -1,3 +1,5 @@
+import { SET_FILTER } from '../constants/FilterTypes'
+
 const getFilter = function() {
   switch (window.location.pathname) {
     case '/active':
@@ -9,16 +11,16 @@ const getFilter = function() {
   }
 };
 
-var filterInitialState = {
-  filter: getFilter()
+var initialState = {
+  selected: getFilter()
 };
 
-export default function(state = filterInitialState, action) {
+export default function(state = initialState, action) {
   switch(action.type) {
-    case 'SET_FILTER':
-      return Object.assign({}, state, {
-        filter: getFilter()
-      });
+    case SET_FILTER:
+      return {
+        selected: getFilter()
+      }
     default:
       return state;
   }

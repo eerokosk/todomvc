@@ -6,14 +6,14 @@ import classNames from 'classnames';
 export default React.createClass({
   getInitialState: function () {
     return {
-      editedTodo: this.props.todo.title,
-      editing: false
+      editing: false,
+      text: this.props.todo.text
     };
   },
 
   componentDidUpdate: function(prevProps) {
     // when entering edit mode
-    if (this.state.editing && prevProps.todo.title === this.state.editedTodo) {
+    if (this.state.editing && prevProps.todo.text === this.state.text) {
       // find edit field
       var node = ReactDOM.findDOMNode(this.refs.editField);
       // set focus to edit field
@@ -23,19 +23,27 @@ export default React.createClass({
     }
   },
 
+  handleToggle: function(e) {
+    this.props.todoActions.completeTodo(this.props.todo.id);
+  },
+
   handleEdit: function(e) {
     this.setState({editing: true});
   },
 
+  handleDestroy: function(e) {
+    this.props.todoActions.deleteTodo(this.props.todo.id);
+  },
+
   handleChange: function (e) {
-    this.setState({editedTodo: e.target.value});
+    this.setState({text: e.target.value});
   },
 
   handleKeyDown: function (e) {
     // cancel todo on escape key
     if (e.keyCode === config.ESCAPE_KEY) {
       this.setState({
-        editedTodo: this.props.todo.title,
+        text: this.props.todo.text,
         editing: false
       });
     }
@@ -53,8 +61,16 @@ export default React.createClass({
       editing: false
     });
 
-    // submit edited todo
-    this.props.handleSubmit(e);
+    // update if not empty
+    if (e.target.value) {
+      this.props.todo.text = e.target.value;
+      this.props.todoActions.editTodo(this.props.todo.id, this.props.todo.text);
+    }
+
+    // delete if empty
+    else {
+      this.props.todoActions.deleteTodo(this.props.todo.id);
+    }
   },
 
   render: function() {
@@ -62,21 +78,21 @@ export default React.createClass({
       <li className={classNames({
         'editing': this.state.editing,
         'completed': this.props.todo.completed,
-        'hidden': (this.props.filter !== null && this.props.todo.completed !== this.props.filter)
+        'hidden': (this.props.filter.selected !== null && this.props.todo.completed !== this.props.filter.selected)
       })}>
         <div className="view">
           <input
             className="toggle"
             type="checkbox"
-            onChange={this.props.handleToggle}
+            onChange={this.handleToggle}
             checked={this.props.todo.completed} />
-          <label onDoubleClick={this.handleEdit}>{this.props.todo.title}</label>
-          <button className="destroy" onClick={this.props.handleDestroy} />
+          <label onDoubleClick={this.handleEdit}>{this.props.todo.text}</label>
+          <button className="destroy" onClick={this.handleDestroy} />
         </div>
         <input
           ref="editField"
           className="edit"
-          value={this.state.editedTodo}
+          value={this.state.text}
           onChange={this.handleChange}
           onKeyDown={this.handleKeyDown}
           onBlur={this.handleBlur} />

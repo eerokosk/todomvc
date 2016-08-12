@@ -4,12 +4,12 @@ import config from '../config';
 export default React.createClass({
   getInitialState: function () {
     return {
-      newTodo: ''
+      text: ''
     };
   },
 
   handleChange: function (e) {
-    this.setState({newTodo: e.target.value});
+    this.setState({text: e.target.value});
   },
 
   handleKeyDown: function (e) {
@@ -18,11 +18,10 @@ export default React.createClass({
       return;
     }
 
-    // submit new todo
-    this.props.handleSubmit(e);
+    this.props.todoActions.addTodo(e.target.value);
 
     // reset new todo field
-    this.setState({newTodo: ''});
+    this.setState({text: ''});
   },
 
   render: function() {
@@ -33,7 +32,7 @@ export default React.createClass({
           className="new-todo"
           placeholder="What needs to be done?"
           autoFocus={true}
-          value={this.state.newTodo}
+          value={this.state.text}
           onKeyDown={this.handleKeyDown}
           onChange={this.handleChange} />
       </header>

@@ -9,18 +9,18 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 // layouts
-import IndexLayout from 'src/layouts/index.jsx';
+import IndexLayout from 'src/layouts/index.js';
 
-// components
-import AppComponent from 'src/components/app.jsx';
+// containers
+import AppContainer from 'src/containers/app.js';
 
 ReactDOM.render((
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route component={IndexLayout}>
-        <Route path="/" component={AppComponent} />
-        <Route path="/active" component={AppComponent} />
-        <Route path="/completed" component={AppComponent} />
+        <Route path="/" component={AppContainer} />
+        <Route path="/active" component={AppContainer} />
+        <Route path="/completed" component={AppContainer} />
       </Route>
     </Router>
   </Provider>

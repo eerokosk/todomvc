@@ -3,7 +3,7 @@ var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var modRewrite  = require('connect-modrewrite');
 
 module.exports = {
-  entry: "./src/app.jsx",
+  entry: "./src/app.js",
   watch: true,
   output: {
     filename: "./dist/assets/js/app.js",
@@ -14,7 +14,7 @@ module.exports = {
     loaders: [
       {
         loader: 'babel',
-        test: /\.jsx?$/,
+        test: /\.js?$/,
         exclude: /(node_modules|bower_components)/,
         query: {
           presets: ['react', 'es2015', 'stage-2']

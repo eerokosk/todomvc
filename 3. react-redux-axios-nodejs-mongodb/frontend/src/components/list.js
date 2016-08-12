@@ -1,10 +1,9 @@
 import React from 'react';
-import ItemContainer from 'src/containers/item.js';
+import ItemComponent from 'src/components/item.js';
 
 export default React.createClass({
   render: function() {
     var self = this;
-
     return (
       <section className="main">
         <input className="toggle-all" id="toggle-all" type="checkbox" />
@@ -12,7 +11,7 @@ export default React.createClass({
         <ul className="todo-list">
           {this.props.todos.map((todo, key) => {
             return (
-              <ItemContainer key={todo._id} todo={todo} {...self.props} />
+              <ItemComponent key={todo.id} todo={todo} {...self.props} />
             );
           })}
         </ul>
