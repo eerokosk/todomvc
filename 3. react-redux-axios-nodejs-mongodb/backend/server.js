@@ -25,7 +25,10 @@ var router = express.Router();
 
 // todos endpoints
 router.route('/todos')
-  .post(todosController.postTodos)
+  .post(todosController.postTodos);
+
+// todos/:filter endpoints
+router.route('/todos/:filter')
   .get(todosController.getTodos);
 
 // todos/:id endpoints

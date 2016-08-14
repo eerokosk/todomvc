@@ -1,9 +1,14 @@
 import React from 'react';
 import ItemComponent from 'src/components/item.js';
+import { browserHistory } from 'react-router';
 
 export default React.createClass({
   componentDidMount: function() {
-    this.props.todoActions.getTodos();
+    var self = this;
+    browserHistory.listen(function(location) {
+      var filter = location.pathname.split('/').filter(function(n){ return n != '' })[0] || 'all';
+      self.props.todoActions.getTodos(filter);
+    });
   },
 
   render: function() {

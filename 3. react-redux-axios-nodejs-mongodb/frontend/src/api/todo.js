@@ -1,8 +1,8 @@
 import axios from 'axios';
 import store from 'src/store';
 
-export function getTodos() {
-  return axios.get('http://localhost:8000/api/todos').then(function(response) {
+export function getTodos(filter) {
+  return axios.get('http://localhost:8000/api/todos/' + filter).then(function(response) {
     return response.data;
   }).catch(function(err) {
     console.error(err);

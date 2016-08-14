@@ -35,10 +35,20 @@ exports.postTodos = function postTodos(req, res) {
   * @param {object} res - ServerResponse.
   */
 exports.getTodos = function getTodos(req, res) {
+  var filter = {};
+
+  switch (req.params.filter) {
+    case 'active':
+      filter = {completed: false};
+      break;
+    case 'completed':
+      filter = {completed: true};
+      break;
+  }
 
   // find todos
   Todo
-  .find()
+  .find(filter)
   .exec(function(err, todos) {
     if (err) {
       console.log(err);

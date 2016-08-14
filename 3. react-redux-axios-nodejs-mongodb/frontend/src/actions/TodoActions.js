@@ -17,9 +17,9 @@ export function updateTodoSync(todo) {
   return { type: types.UPDATE_TODO, todo }
 }
 
-export function getTodos() {
+export function getTodos(filter) {
   return function (dispatch) {
-    return Api.getTodos().then(
+    return Api.getTodos(filter).then(
       todos => dispatch(getTodosSync(todos)),
       error => console.log(error)
     );

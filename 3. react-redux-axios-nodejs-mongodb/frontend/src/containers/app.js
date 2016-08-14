@@ -16,14 +16,11 @@ class App extends Component {
     return (
       <section className="todoapp">
         <NewComponent
-          routing={routing}
           todoActions={todoActions} />
         <ListComponent
-          routing={routing}
           todos={todos}
           todoActions={todoActions} />
         <StatsComponent
-          routing={routing}
           todos={todos}
           todoActions={todoActions} />
       </section>
@@ -33,12 +30,6 @@ class App extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    // selective routing state
-    routing: {
-      pathname: ownProps.location.pathname,
-      pathparts: ownProps.location.pathname.split('/').filter(function(n){ return n != '' }),
-      query: ownProps.location.query
-    },
     todos: state.todos
   }
 }

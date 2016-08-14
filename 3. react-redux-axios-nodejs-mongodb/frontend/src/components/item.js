@@ -78,10 +78,7 @@ export default React.createClass({
     return (
       <li className={classNames({
         'editing': this.state.editing,
-        'completed': this.props.todo.completed,
-        'hidden': this.props.routing.pathparts[0] && (
-            (this.props.todo.completed === true && this.props.routing.pathparts[0] !== 'completed') ||
-            (this.props.todo.completed === false && this.props.routing.pathparts[0] !== 'active'))
+        'completed': this.props.todo.completed
       })}>
         <div className="view">
           <input

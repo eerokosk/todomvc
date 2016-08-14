@@ -12,6 +12,8 @@ export default React.createClass({
   },
 
   render: function() {
+    var filter = location.pathname.split('/').filter(function(n){ return n != '' })[0] || 'all';
+
     return (
       <footer className="footer">
         <span className="todo-count">
@@ -20,13 +22,13 @@ export default React.createClass({
         </span>
         <ul className="filters">
           <li>
-            <Link to="/" className={classNames({'selected': (!this.props.routing.pathparts[0]) })}>All</Link>
+            <Link to="/" className={classNames({'selected': filter === 'all' })}>All</Link>
           </li>
           <li>
-            <Link to="/active" className={classNames({'selected': (this.props.routing.pathparts[0] === 'active')})}>Active</Link>
+            <Link to="/active" className={classNames({'selected': filter === 'active'})}>Active</Link>
           </li>
           <li>
-            <Link to="/completed" className={classNames({'selected': (this.props.routing.pathparts[0] === 'completed')})}>Completed</Link>
+            <Link to="/completed" className={classNames({'selected': filter === 'completed'})}>Completed</Link>
           </li>
         </ul>
         <button onClick={this.handleCompleted} className="clear-completed">Clear completed</button>
