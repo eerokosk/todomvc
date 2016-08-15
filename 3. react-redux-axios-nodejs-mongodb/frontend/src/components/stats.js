@@ -21,17 +21,20 @@ export default React.createClass({
             !todo.completed ? count + 1 : count, 0)}</strong> items left
         </span>
         <ul className="filters">
-          <li>
-            <Link to="/" className={classNames({'selected': filter === 'all' })}>All</Link>
-          </li>
-          <li>
-            <Link to="/active" className={classNames({'selected': filter === 'active'})}>Active</Link>
-          </li>
-          <li>
-            <Link to="/completed" className={classNames({'selected': filter === 'completed'})}>Completed</Link>
-          </li>
+          <li><Link to="/" className={classNames({'selected': filter === 'all' })}>All</Link></li>
+          <li><Link to="/active" className={classNames({'selected': filter === 'active'})}>Active</Link></li>
+          <li><Link to="/completed" className={classNames({'selected': filter === 'completed'})}>Completed</Link></li>
         </ul>
-        <button onClick={this.handleCompleted} className="clear-completed">Clear completed</button>
+        <button
+          onClick={this.handleCompleted}
+          className={classNames({
+            'clear-completed': true,
+            'hidden': this.props.todos.filter((todo) =>
+              todo.completed === true ).length === 0
+                ? true : false
+          })}>
+          Clear completed
+        </button>
       </footer>
     )
   }
