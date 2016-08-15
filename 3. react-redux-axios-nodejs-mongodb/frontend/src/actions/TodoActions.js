@@ -1,5 +1,5 @@
 import * as types from '../constants/TodoTypes'
-import * as Api from '../api/todo'
+import * as Api from '../api/todos'
 
 export function getTodosSync(todos) {
   return { type: types.GET_TODOS, todos }
