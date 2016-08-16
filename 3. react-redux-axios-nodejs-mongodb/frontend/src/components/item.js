@@ -24,8 +24,9 @@ export default React.createClass({
   },
 
   handleToggle: function(e) {
-    this.props.todo.completed = !this.props.todo.completed;
-    this.props.todoActions.updateTodo(this.props.todo);
+    this.props.todoActions.updateTodo(this.props.todo, {
+      completed: !this.props.todo.completed
+    });
   },
 
   handleEdit: function(e) {
@@ -64,8 +65,9 @@ export default React.createClass({
 
     // update if not empty
     if (e.target.value) {
-      this.props.todo.text = e.target.value;
-      this.props.todoActions.updateTodo(this.props.todo);
+      this.props.todoActions.updateTodo(this.props.todo, {
+        text: e.target.value
+      });
     }
 
     // delete if empty

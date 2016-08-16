@@ -18,7 +18,7 @@ export default function todos(state = initialState, action) {
     case types.UPDATE_TODO:
       return state.map(todo =>
         todo._id === action.todo._id ?
-          Object.assign({}, todo) : todo
+          Object.assign({}, todo, action.merge) : todo
       )
 
     default:

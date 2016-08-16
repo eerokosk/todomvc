@@ -13,8 +13,8 @@ export function deleteTodoSync(todo) {
   return { type: types.DELETE_TODO, todo }
 }
 
-export function updateTodoSync(todo) {
-  return { type: types.UPDATE_TODO, todo }
+export function updateTodoSync(todo, merge) {
+  return { type: types.UPDATE_TODO, todo, merge }
 }
 
 export function getTodos(filter) {
@@ -44,10 +44,10 @@ export function deleteTodo(todo) {
   };
 }
 
-export function updateTodo(todo) {
+export function updateTodo(todo, merge) {
   return function (dispatch) {
-    return Api.updateTodo(todo).then(
-      todo => dispatch(updateTodoSync(todo)),
+    return Api.updateTodo(Object.assign({}, todo, merge)).then(
+      todo => dispatch(updateTodoSync(todo, merge)),
       error => console.log(error)
     );
   };
