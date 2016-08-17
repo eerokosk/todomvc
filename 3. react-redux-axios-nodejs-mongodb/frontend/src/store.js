@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 // App Reducers
@@ -14,7 +14,10 @@ var reducers = combineReducers({
 // Create Store
 var store = createStore(
   reducers,
-  applyMiddleware(thunk)
+  compose(
+    applyMiddleware(thunk),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  )
 );
 
 export default store;
