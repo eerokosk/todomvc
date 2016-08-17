@@ -29,7 +29,7 @@ export default React.createClass({
       completed: !this.props.todo.completed
     }, function(todo) {
       // get updated todos
-      self.props.todoActions.getTodos(location.pathname.split('/').filter(function(n){ return n != '' })[0] || 'all');
+      self.props.todoActions.getTodos();
     });
   },
 

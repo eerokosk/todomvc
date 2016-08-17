@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router';
+import * as Utils from 'src/modules/utils';
 
 export default React.createClass({
   handleCompleted: function(e) {
@@ -12,8 +13,6 @@ export default React.createClass({
   },
 
   render: function() {
-    var filter = location.pathname.split('/').filter(function(n){ return n != '' })[0] || 'all';
-
     return (
       <footer className="footer">
         <span className="todo-count">
@@ -21,9 +20,9 @@ export default React.createClass({
             !todo.completed ? count + 1 : count, 0)}</strong> items left
         </span>
         <ul className="filters">
-          <li><Link to="/" className={classNames({'selected': filter === 'all' })}>All</Link></li>
-          <li><Link to="/active" className={classNames({'selected': filter === 'active'})}>Active</Link></li>
-          <li><Link to="/completed" className={classNames({'selected': filter === 'completed'})}>Completed</Link></li>
+          <li><Link to="/" className={classNames({'selected': Utils.filter() === 'all' })}>All</Link></li>
+          <li><Link to="/active" className={classNames({'selected': Utils.filter() === 'active'})}>Active</Link></li>
+          <li><Link to="/completed" className={classNames({'selected': Utils.filter() === 'completed'})}>Completed</Link></li>
         </ul>
         <button
           onClick={this.handleCompleted}

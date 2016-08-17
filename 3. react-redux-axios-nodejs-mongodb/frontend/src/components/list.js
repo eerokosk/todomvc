@@ -5,24 +5,21 @@ import { browserHistory } from 'react-router';
 export default React.createClass({
   componentDidMount: function() {
     var self = this;
+    // get todos on route change
     browserHistory.listen(function() {
-      self.props.todoActions.getTodos(location.pathname.split('/').filter(function(n){ return n != '' })[0] || 'all');
+      self.props.todoActions.getTodos();
     });
   },
 
   handleToggleAll: function(e) {
     var self = this;
-
-    // has all todos been completed or not
-    var allCompleted = this.props.todos.every(todo => todo.completed);
-
     // toggle all completed states or set all as completed
     this.props.todos.map((todo, key) => {
       this.props.todoActions.updateTodo(todo, {
-        completed: allCompleted ? !todo.completed : true
+        completed: this.props.todos.every(todo => todo.completed) ? !todo.completed : true
       }, function(todo) {
         // get updated todos
-        self.props.todoActions.getTodos(location.pathname.split('/').filter(function(n){ return n != '' })[0] || 'all');
+        self.props.todoActions.getTodos();
       });
     });
   },
@@ -35,8 +32,7 @@ export default React.createClass({
           className="toggle-all"
           id="toggle-all"
           type="checkbox"
-          checked={this.props.todos.filter((todo) =>
-            todo.completed === true ).length === this.props.todos.length}
+          checked={this.props.todos.every(todo => todo.completed)}
           onChange={this.handleToggleAll}
           />
         <label htmlFor="toggle-all">Mark all as complete</label>

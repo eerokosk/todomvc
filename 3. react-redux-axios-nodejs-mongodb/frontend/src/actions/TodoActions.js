@@ -1,4 +1,5 @@
 import * as types from '../constants/TodoTypes'
+import * as Utils from 'src/modules/utils';
 import * as Api from '../api/todos'
 
 export function getTodosSync(todos) {
@@ -17,9 +18,9 @@ export function updateTodoSync(todo, merge) {
   return { type: types.UPDATE_TODO, todo, merge }
 }
 
-export function getTodos(filter, callback) {
+export function getTodos(callback) {
   return function (dispatch) {
-    return Api.getTodos(filter).then(
+    return Api.getTodos(Utils.filter()).then(
       todos => {
         dispatch(getTodosSync(todos));
         if (typeof callback === 'function') callback(todos);
