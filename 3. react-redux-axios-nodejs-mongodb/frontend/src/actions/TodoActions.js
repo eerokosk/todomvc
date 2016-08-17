@@ -17,37 +17,49 @@ export function updateTodoSync(todo, merge) {
   return { type: types.UPDATE_TODO, todo, merge }
 }
 
-export function getTodos(filter) {
+export function getTodos(filter, callback) {
   return function (dispatch) {
     return Api.getTodos(filter).then(
-      todos => dispatch(getTodosSync(todos)),
+      todos => {
+        dispatch(getTodosSync(todos));
+        if (typeof callback === 'function') callback(todos);
+      },
       error => console.log(error)
     );
   }
 }
 
-export function addTodo(text) {
+export function addTodo(text, callback) {
   return function (dispatch) {
     return Api.addTodo(text).then(
-      todo => dispatch(addTodoSync(todo)),
+      todo => {
+        dispatch(addTodoSync(todo));
+        if (typeof callback === 'function') callback(todo);
+      },
       error => console.log(error)
     );
   };
 }
 
-export function deleteTodo(todo) {
+export function deleteTodo(todo, callback) {
   return function (dispatch) {
     return Api.deleteTodo(todo).then(
-      todo => dispatch(deleteTodoSync(todo)),
+      todo => {
+        dispatch(deleteTodoSync(todo));
+        if (typeof callback === 'function') callback(todo);
+      },
       error => console.log(error)
     );
   };
 }
 
-export function updateTodo(todo, merge) {
+export function updateTodo(todo, merge, callback) {
   return function (dispatch) {
     return Api.updateTodo(Object.assign({}, todo, merge)).then(
-      todo => dispatch(updateTodoSync(todo, merge)),
+      todo => {
+        dispatch(updateTodoSync(todo, merge));
+        if (typeof callback === 'function') callback(todo);
+      },
       error => console.log(error)
     );
   };

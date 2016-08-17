@@ -24,8 +24,12 @@ export default React.createClass({
   },
 
   handleToggle: function(e) {
+    var self = this;
     this.props.todoActions.updateTodo(this.props.todo, {
       completed: !this.props.todo.completed
+    }, function(todo) {
+      // get updated todos
+      self.props.todoActions.getTodos(location.pathname.split('/').filter(function(n){ return n != '' })[0] || 'all');
     });
   },
 

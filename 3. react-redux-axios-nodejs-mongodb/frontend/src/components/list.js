@@ -3,26 +3,16 @@ import ItemComponent from 'src/components/item.js';
 import { browserHistory } from 'react-router';
 
 export default React.createClass({
-  _getFilter: function() {
-    return location.pathname.split('/').filter(function(n){ return n != '' })[0] || 'all';
-  },
-
   componentDidMount: function() {
     var self = this;
     browserHistory.listen(function() {
-      self.props.todoActions.getTodos(self._getFilter());
+      self.props.todoActions.getTodos(location.pathname.split('/').filter(function(n){ return n != '' })[0] || 'all');
     });
   },
 
-  componentWillUpdate: function(nextProps, nextState) {
-    if (this.props.todos.length > 0 && this.props.todos.length === nextProps.todos.length &&
-      this.props.todos.filter((todo) => todo.completed === true).length !==
-      nextProps.todos.filter((todo) => todo.completed === true).length) {
-      this.props.todoActions.getTodos(this._getFilter());
-    }
-  },
-
   handleToggleAll: function(e) {
+    var self = this;
+
     // has all todos been completed or not
     var allCompleted = this.props.todos.every(todo => todo.completed);
 
@@ -30,6 +20,9 @@ export default React.createClass({
     this.props.todos.map((todo, key) => {
       this.props.todoActions.updateTodo(todo, {
         completed: allCompleted ? !todo.completed : true
+      }, function(todo) {
+        // get updated todos
+        self.props.todoActions.getTodos(location.pathname.split('/').filter(function(n){ return n != '' })[0] || 'all');
       });
     });
   },
