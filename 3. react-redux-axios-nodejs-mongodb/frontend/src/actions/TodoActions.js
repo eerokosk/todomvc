@@ -1,21 +1,21 @@
-import * as types from '../constants/TodoTypes'
+import * as TodoTypes from '../constants/TodoTypes'
 import * as Utils from 'src/modules/utils';
 import * as Api from '../api/todos'
 
 export function getTodosSync(todos) {
-  return { type: types.GET_TODOS, todos }
+  return { type: TodoTypes.GET_TODOS, todos }
 }
 
 export function addTodoSync(todo) {
-  return { type: types.ADD_TODO, todo }
+  return { type: TodoTypes.ADD_TODO, todo }
 }
 
 export function deleteTodoSync(todo) {
-  return { type: types.DELETE_TODO, todo }
+  return { type: TodoTypes.DELETE_TODO, todo }
 }
 
 export function updateTodoSync(todo, merge) {
-  return { type: types.UPDATE_TODO, todo, merge }
+  return { type: TodoTypes.UPDATE_TODO, todo, merge }
 }
 
 export function getTodos(callback) {
