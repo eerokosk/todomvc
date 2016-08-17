@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 
 // App Reducers
 import { routerReducer } from 'react-router-redux';
-import todosReducer from './reducers/todos';
+import todosReducer from '../reducers/todos';
 
 // Combine Reducers
 var reducers = combineReducers({
