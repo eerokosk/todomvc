@@ -11,7 +11,7 @@ Usage
     cd path/to/example
     npm install
     node server.js
-    http://localhost:8080/
+    open http://localhost:8080/
 
 
 ## 2. backbonejs-react-nodejs-mongodb
@@ -24,7 +24,7 @@ Usage
     npm install
     mongod --dbpath /usr/local/var/mongodb/
     node server.js
-    http://localhost:8080/
+    open http://localhost:8080/
 
 ## 3. react-redux-axios-nodejs-mongodb
 
@@ -41,4 +41,4 @@ Usage
     npm install
     gulp
 
-    http://localhost:8080/
+    open http://localhost:8080/
